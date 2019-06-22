@@ -1,0 +1,15 @@
+{
+  "name": "seedbase",
+  "version": "1.0.0",
+  "description": "Seedbase is a tool for local farmers, small businesses, and garden enthusiasts for efficient and smart planting. Our seed database is a sophisticatedly organized compilation of passionate local businesses and farms that offers a wide variety of seeds for flowers, vegetables, fruit, and more. Seedbase offers multiple search options and filters allowing you find the best product based on your needs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"node ./server/bin/www\" \"cd ./client && npm start\""
+  },
+  "author": "Pranav Maniktala & Aldi Maraya",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
