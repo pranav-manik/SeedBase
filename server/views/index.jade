@@ -3,3 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  form(method="GET" action="/search")
+    input(type="text" placeholder="Search" name="search")
+    button(onclick="window.location.href='/search'") search
+

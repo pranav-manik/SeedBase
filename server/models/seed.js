@@ -18,6 +18,11 @@ var SeedSchema = new Schema({
 	timestamp : Date
 });
 
+SeedSchema.methods.getCategory =  function(category) {
+	return this.model('seeds').find({'category': this.category})
+};
 
-var Seed = mongoose.model('Seed', SeedSchema);
+var Seed = mongoose.model('seeds', SeedSchema);
+
+
 module.exports = Seed;
