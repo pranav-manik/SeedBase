@@ -2,7 +2,7 @@ extends layout
 
 block content
  form(method="GET" action="/search")
-    input(type="text" placeholder="Search" name="search") 
+    input(type="text" placeholder="Search" name="search" value="#{search}") 
     button(onclick="window.location.href='/search'") search
  -var results = result
  div

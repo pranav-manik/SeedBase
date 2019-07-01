@@ -21,7 +21,7 @@ router.get('/search', function(req,res,next) {
 	}).exec( (err, result) => {
 		if (err) return res.send("error");
 		else if (result.length == 0) res.send('No results found');
-		res.render('result', {result: result});
+		res.render('result', {result: result, search: search});
 	});
 	// await result;
 	// console.log("result - " + result);
