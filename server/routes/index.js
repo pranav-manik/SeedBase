@@ -17,10 +17,10 @@ router.get('/search', function(req,res,next) {
 		if (err) return res.send("error");
 		else if (docs == null) return "No search found";
 		console.log("returning result");
-		console.log(docs[0]);
+		console.log(docs.length);
 		return docs;
 	}).exec( (err, result) => {
-		res.render('result', {result: result});
+		res.render('result', {result: JSON.stringify(result)});
 	});
 	// await result;
 	// console.log("result - " + result);

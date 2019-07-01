@@ -1,4 +1,19 @@
 extends layout
 
 block content
-	div #{result}
+
+ -var results = result
+ div
+   table.table.table-hover
+    thead
+      tr: th Seeds
+      th id
+      th name
+      th category
+    tbody
+      each seed in results
+        tr
+          td=seed.id
+          td=seed.name
+          td=seed.category
+          //td=JSON.stringify(seed.prices)
