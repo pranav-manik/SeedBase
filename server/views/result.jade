@@ -1,7 +1,9 @@
 extends layout
 
 block content
-
+ form(method="GET" action="/search")
+    input(type="text" placeholder="Search" name="search") 
+    button(onclick="window.location.href='/search'") search
  -var results = result
  div
    table.table.table-hover
@@ -10,10 +12,13 @@ block content
       th id
       th name
       th category
+      th link
     tbody
       each seed in results
         tr
-          td=seed.id
-          td=seed.name
-          td=seed.category
+          td #{seed.id}
+          td #{seed.name}
+          td #{seed.category}
+          td
+            a(href="#{seed.url}" target="_blank") #{seed.manufacturer}
           //td=JSON.stringify(seed.prices)

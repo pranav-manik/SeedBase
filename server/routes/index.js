@@ -11,16 +11,17 @@ router.get('/', function(req, res, next) {
 //grabs search
 router.get('/search', function(req,res,next) {
 	var search = req.query.search;
-	// console.log("server/index.js has caught route");
 	console.log("your search was " + JSON.stringify(search));
 	Seed.find({ name : search}, (err, docs) => {
 		if (err) return res.send("error");
 		else if (docs == null) return "No search found";
-		console.log("returning result");
 		console.log(docs.length);
+		console.log(docs);
 		return docs;
 	}).exec( (err, result) => {
-		res.render('result', {result: JSON.stringify(result)});
+		if (err) return res.send("error");
+		else if (result.length == 0) res.send('No results found');
+		res.render('result', {result: result});
 	});
 	// await result;
 	// console.log("result - " + result);
