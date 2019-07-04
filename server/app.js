@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
+const lunr = require('lunr');
 
 mongoose.connect('mongodb+srv://pmanik:M0nG0d@seeds-jwby6.mongodb.net/seedbase?retryWrites=true&w=majority', {useNewUrlParser: true});
 var db = mongoose.connection;
