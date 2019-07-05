@@ -9,14 +9,16 @@ block content
    table.table.table-hover
     thead
       tr: th Seeds
-      th id
+      //th id
+      th variety
       th name
       th category
       th link
     tbody
       each seed in results
         tr
-          td #{seed.id}
+          //td #{seed.id}
+          td #{seed.variety}
           td #{seed.name}
           td #{seed.category}
           td
