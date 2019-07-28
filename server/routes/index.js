@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Seed = require('../models/seed');
-var lunr = require('lunr');
+var client = require('../connection');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
