@@ -14,7 +14,7 @@ var SeedSchema = new Schema({
 	mat_max : Number,
 	life_cycle : String,
 	hybrid_status : String,
-	prices : Map,
+	prices : Object,
 	organic : Boolean,
 	url : String,
 	timestamp : Date
