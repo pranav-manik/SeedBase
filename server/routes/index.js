@@ -48,11 +48,15 @@ router.get('/search', function(req,res,next) {
 	        //Handle error
 	    }
 
-	    var results = seedss.hits.hits;
+		try{
+			var results = seedss.hits.hits;
+		} catch(error){
+			console.log(error);
+		}
 
 	    //work with your hits
 	    console.log(results);
-	    res.render('result', {result: results, search: search});
+	    res.json(results);
 	});
 
 

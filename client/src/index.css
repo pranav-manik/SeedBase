@@ -11,3 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/*Navbar*/
+
+
+nav {
+	height: 75px;
+	background-color: #3b3b3b;
+	color: white;
+	margin-left: 10%;
+}
+
+
+/*SideNav*/
+
+.sidenav{
+	height: 100%;
+	width: 10%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: yellow;
+}
+
+
+/*SearchBar*/
+
+.form-group{
+	width:100%;
+}
+
+#search{
+	width: 50%;
+	margin:10px;
+	margin-top: 15px;
+	display: inline;
+}
+
+/*Result*/
+
+.result{
+	float: right;
+	width: 90%;
+	height: 100vh;
+	background-color: #bababa;
+}
+
+.card{
+	background-color: white;
+	padding: 20px;
+	margin: 20px;
+}
+
+.carddetails{
+	margin-top: -20px;
+}
+
+.link{
+	margin-top: 30px;
+	display: block;
+}
+
+.collapse.show{
+	margin-bottom: 20px;
+}
