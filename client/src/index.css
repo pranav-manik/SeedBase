@@ -38,11 +38,15 @@ nav {
 
 /*SearchBar*/
 
-.form-control{
-	width: 300px;
-	margin: 25px;
+.form-group{
+	width:100%;
+}
+
+#search{
+	width: 50%;
+	margin:10px;
+	margin-top: 15px;
 	display: inline;
-	height: 30px;
 }
 
 /*Result*/
@@ -62,4 +66,13 @@ nav {
 
 .carddetails{
 	margin-top: -20px;
+}
+
+.link{
+	margin-top: 30px;
+	display: block;
+}
+
+.collapse.show{
+	margin-bottom: 20px;
 }

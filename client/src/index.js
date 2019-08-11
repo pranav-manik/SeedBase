@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Search from './js/search.js';
 import Sidenav from './js/sidenav.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import * as serviceWorker from './serviceWorker';
 

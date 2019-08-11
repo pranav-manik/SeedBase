@@ -8,20 +8,10 @@ class Single extends Component{
 		super(props);
 
 		this.state = {
-			// variety: "",
-			// name: "",
-			// category: "",
-			// manufacturer: "",
-			// mat_min: "",
-			// mat_max: "",
-			// life_cycle: "",
-			// hybrid_status: "",
-			// prices: Map,
-			// organic: Boolean,
-			// url: "",
-			// timestamp: Date
 			isExpanded: false
 		};
+
+		this.toggleExpand = this.toggleExpand.bind(this);
 	}
 
 	toggleExpand = () => {
@@ -29,28 +19,32 @@ class Single extends Component{
 	}
 
 	render(){
-		const {data}=this.props;
+		const seed = this.props.seed;
 		return(
 
+			<div>
 		      <Card>
 		        <CardBody>
-		          <CardTitle>Variety: {this.state.variety}</CardTitle>
-		          <CardSubtitle>Card subtitle</CardSubtitle>
+		          <CardTitle>Variety: {seed.variety}</CardTitle>
+		          <CardSubtitle>Manufacturer: {seed.manufacturer}</CardSubtitle>
 		          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-		          <Button onClick={this.toggleExpand}>Button</Button>
+
+				  <Collapse isOpen={this.state.isExpanded}>
+					<CardSubtitle>Maturity: {seed.maturity}</CardSubtitle>
+					<CardSubtitle>Life Cycle: {seed.life_cycle}</CardSubtitle>
+					<CardSubtitle>Hybrid Status: {seed.hybrid_status}</CardSubtitle>
+					{/* seed.prices.map(price => (
+						<li key = {price.name}>{price.key}</li>
+						) */}
+				</Collapse>
+
+		          <Button outline color="info" class = "expand" onClick={this.toggleExpand}>Expand</Button>
+				  <a target="_blank" class = "link" href = {seed.url}>View on Distributor's Website</a>
 		        </CardBody>
 		      </Card>
 
-		      // {this.state.isExpanded ?
-		      // 	<Card class = "carddetails">
-		      //       <CardBody>
-		      //       Anim pariatur cliche reprehenderit,
-		      //        enim eiusmod high life accusamus terry richardson ad squid. Nihil
-		      //        anim keffiyeh helvetica, craft beer labore wes anderson cred
-		      //        nesciunt sapiente ea proident.
-		      //       </CardBody>
-	       //   	 </Card>
-        //  	 : null}
+
+			</div>
 
 			);
 	}

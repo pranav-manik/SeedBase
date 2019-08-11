@@ -17,6 +17,7 @@ class Search extends Component{
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getData = this.getData.bind(this);
 	}
 
 	handleChange(event){
@@ -30,39 +31,47 @@ class Search extends Component{
 		const input = document.getElementById("search");
 		var search = input.value;
 
-		alert("Search Initiated: " + search);
-		// this.setState({ isLoaded: false });
-
-		axios.get('http://localhost:4000/search?search=' + search)
-			.then(res => {
-				this.setState( { results: res.data });
-			})
-
-		console.log("Hello");
-
-		this.setState({ isLoaded: true });
+		console.log("Search Initiated: " + search);
+		
+		this.getData(search);
 
 	}
 
-
+	getData = async (search) => {
+		console.log("Search: " + this.state.search);
+		try{
+			const response = await axios.get('http://localhost:4000/search', {
+				params: {
+					search : search
+				}
+			}).then((response) => {
+				console.log("Spitting out resonse")
+				console.log(response);
+				this.setState({ results: response.data , isLoaded:true});
+				console.log(response.data);
+			})
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
 	render(){
 		return(
 
 			<div>
 			<nav>
-				<Form>
+				<Form onSubmit={this.handleSubmit}>
 					 <FormGroup>
 				        <Input
 				          type="search"
 				          name="search"
 				          id="search"
 				          placeholder="Search"
-				          class = "searchbar"
-				        />
+						  class = "searchbar"
+				    	 />
+						<Button type="submit" color="primary"> Search </Button>
 			        </FormGroup>
 		        </Form>
-				<Button onClick={this.handleSubmit}> Search </Button>
 
 			</nav>
 
@@ -70,9 +79,9 @@ class Search extends Component{
 
 				{this.state.isLoaded ? 
 					this.state.results.map(item => (
-						<Single seed={item}>Seed</Single>
+						<Single key = {item._id} seed={item._source}>Seed</Single>
 						))
-					:null
+					:<p>Welcome to Seedbase, search up a seed to get started</p>
 				}
 
 			</div>
