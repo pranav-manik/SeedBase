@@ -16,9 +16,9 @@ router.get('/search', function(req,res,next) {
 	var query = {
         "dis_max" : {
             "queries" : [
-                { "term" : { "variety" : search }},
-                { "term" : { "name" : search }},
-                { "term" : { "category" : search }},
+                { "fuzzy" : { "variety" : search }},
+                { "fuzzy" : { "name" : search }},
+                { "fuzzy" : { "category" : search }},
 
             ],
             "tie_breaker" : 0.7
