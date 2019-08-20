@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #e0e0e0;
 }
 
 code {
@@ -12,15 +13,7 @@ code {
     monospace;
 }
 
-/*Navbar*/
 
-
-nav {
-	height: 75px;
-	background-color: #3b3b3b;
-	color: white;
-	margin-left: 10%;
-}
 
 
 /*SideNav*/
@@ -35,44 +28,10 @@ nav {
 	background-color: yellow;
 }
 
-
-/*SearchBar*/
-
-.form-group{
-	width:100%;
-}
-
-#search{
-	width: 50%;
-	margin:10px;
-	margin-top: 15px;
-	display: inline;
-}
-
 /*Result*/
 
 .result{
-	float: right;
-	width: 90%;
-	height: 100vh;
-	background-color: #bababa;
+	background-color: #e0e0e0;
+	padding-top: 20px;
 }
 
-.card{
-	background-color: white;
-	padding: 20px;
-	margin: 20px;
-}
-
-.carddetails{
-	margin-top: -20px;
-}
-
-.link{
-	margin-top: 30px;
-	display: block;
-}
-
-.collapse.show{
-	margin-bottom: 20px;
-}

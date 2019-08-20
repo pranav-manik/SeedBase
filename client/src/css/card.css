@@ -1,0 +1,32 @@
+.card{
+	background-color: white;
+	padding: 20px;
+    margin: 0 20px 20px 20px;
+    cursor:pointer;
+}
+
+.card:hover{
+    background-color: #ededed;
+}
+
+.carddetails{
+	margin-top: -20px;
+}
+
+.collapse.show{
+	margin-bottom: 20px;
+}
+
+.card-title{
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card-subtitle{
+    font-size: 1.0rem;
+    padding-bottom: 10px;
+}
+
+.centered{
+    margin: auto;
+}

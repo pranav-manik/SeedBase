@@ -1,0 +1,33 @@
+/*Navbar*/
+
+nav {
+	height: 100px;
+	background-color: #F1E8D9;
+    color: white;
+    display: block;
+    margin: auto;
+}
+
+.centered{
+    margin: auto;
+}
+
+.row{
+    width: 100%;
+}
+
+/*SearchBar*/
+
+.form-group{
+    width:100%;
+    text-align: center;
+}
+
+#search{
+	width: 80%;
+	margin: 20 auto;
+    display: inline;
+    border-radius: 30px;
+    border: 0;
+    outline: none;
+}

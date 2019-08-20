@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
-import { Input, Button, FormGroup, Label, Form } from 'reactstrap';
-import Single from './card.js';
-import axios from 'axios';
+import ReactDOM from 'react-dom';
+import { Input, Button, FormGroup, Label, Form , Row, Col, Navbar} from 'reactstrap';
+import Result from './result.js';
+import '../css/search.css';
 
+const mql = window.matchMedia(`(min-width: 800px)`);
 
 class Search extends Component{
 
 	constructor(props){
-		super(props)
+		super(props);
 
 		this.state = {
-			search: "",
-			results: null,
-			isLoaded: false
+			search: ""
 		};
 
+		this.resultElement = React.createRef();
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.getData = this.getData.bind(this);
+	}
+
+	componentWillMount() {
+		mql.addListener(this.mediaQueryChanged);
+	  }
+	
+	componentWillUnmount() {
+		mql.removeListener(this.mediaQueryChanged);
 	}
 
 	handleChange(event){
@@ -32,59 +40,33 @@ class Search extends Component{
 		var search = input.value;
 
 		console.log("Search Initiated: " + search);
-		
-		this.getData(search);
-
-	}
-
-	getData = async (search) => {
-		console.log("Search: " + this.state.search);
-		try{
-			const response = await axios.get('http://localhost:4000/search', {
-				params: {
-					search : search
-				}
-			}).then((response) => {
-				console.log("Spitting out resonse")
-				console.log(response);
-				this.setState({ results: response.data , isLoaded:true});
-				console.log(response.data);
-			})
-		} catch (error) {
-			console.error(error);
-		}
+		this.setState({search: search});
+		this.resultElement.current.getData(search);
 	}
 
 	render(){
 		return(
-
 			<div>
-			<nav>
-				<Form onSubmit={this.handleSubmit}>
-					 <FormGroup>
-				        <Input
-				          type="search"
-				          name="search"
-				          id="search"
-				          placeholder="Search"
-						  class = "searchbar"
-				    	 />
-						<Button type="submit" color="primary"> Search </Button>
-			        </FormGroup>
-		        </Form>
+			<Navbar>
+				<Row>
+					<Col sm="6" className="centered">
+						<Form onSubmit={this.handleSubmit}>
+							 <FormGroup>
+						        <Input
+						          type="search"
+						          name="search"
+						          id="search"
+						          placeholder="Search"
+								  className = "searchbar"
+						    	 />
+								<Button type="submit" color="link"> <i class="fas fa-search"></i> </Button>
+					        </FormGroup>
+				        </Form>
+					</Col>
+				</Row>
+			</Navbar>
 
-			</nav>
-
-			<div class = "result">
-
-				{this.state.isLoaded ? 
-					this.state.results.map(item => (
-						<Single key = {item._id} seed={item._source}>Seed</Single>
-						))
-					:<p>Welcome to Seedbase, search up a seed to get started</p>
-				}
-
-			</div>
+			<Result ref={this.resultElement}/>
 
 			</div>
 
