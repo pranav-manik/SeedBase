@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Single from './card.js';
 import axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroller';
 
 class Result extends Component{
 
@@ -12,6 +13,9 @@ class Result extends Component{
             firstRequest: false
         };
 
+
+        this.compareString = this.compareString.bind(this);
+        
         console.log(this.props.search);
     }
 
@@ -33,16 +37,107 @@ class Result extends Component{
         }
     }
 
+    dataBySort(sort_by) {
+
+		if (this.state.response != null) {
+			switch(sort_by) {
+				//Default, no sorting
+				case 0:
+					console.log(sort_by);
+					break;
+				// alphebetize
+				case 1:
+					this.setState({response: this.state.response.sort(function (a, b){
+                        return this.compareString(a.variety, b.variety, "ASC");
+                    })});
+					// console.log("Outputting resulets after alphabetization:" + this.state.response);
+					break;
+				// low to high pricing
+				// case 2:
+				// 	results = results.sort( (a,b) => {
+				// 	    if (a.prices.price_1) {
+				// 	        var temp_a = (a.prices.price_1.replace("$", "").split('/')[0]);
+				// 	    }
+				// 	    if (b.prices.price_1) {
+				// 	        var temp_b = (b.prices.price_1.replace("$", "").split('/')[0]);
+				// 	    }
+				// 	    return parseFloat(temp_a) - parseFloat(temp_b);
+				// 	});
+				// // high to low pricing
+				// case 3:
+				// 	results = results.sort( (a,b) => {
+				// 	    if (a.prices.price_1) {
+				// 	        var temp_a = (a.prices.price_1.replace("$", "").split('/')[0]);
+				// 	    }
+				// 	    if (b.prices.price_1) {
+				// 	        var temp_b = (b.prices.price_1.replace("$", "").split('/')[0]);
+				// 	    }
+				// 	    return parseFloat(temp_b) - parseFloat(temp_a);
+				// 	});
+				// 	break;
+				default:
+					break;
+        }
+            // this.setState({response: results});
+		}
+    }
+    
+    // sortByPrice(a, b, order){
+
+    //     if (a.prices.price_1 != undefined && b.prices.price_1 != undefined){
+
+    //         var temp_a = (a.prices.price_1.replace("$", "").split('/')[0]);
+    //         var temp_b = (b.prices.price_1.replace("$", "").split('/')[0]);
+
+    //         if (order == "ASC"){
+    //             return parseFloat(temp_b) - parseFloat(temp_a);
+    //         }
+    //         else if (order == "DEC"){
+    //             return parseFloat(temp_a) - parseFloat(temp_b);
+    //         }
+    //     }
+
+    // }
+
+    compareString(a, b, order){
+        a = a.toLowerCase();
+        b = b.toLowerCase();
+
+        if (a == undefined){
+            return -1;
+        }
+
+        if (b == undefined){
+            return 1;
+        }
+
+        if (a == undefined && b == undefined){
+            return 0;
+        }
+
+        if (order == "ASC"){
+            return (a < b) ? -1 : (a > b) ? 1 : 0;
+        }
+        else if (order == "DEC"){
+            return (a > b) ? -1 : (a < b) ? 1 : 0;
+        }
+    }
 
     render(){
         return(
             <div className = "result">
-				{this.state.response.length ? 
-					this.state.response.map(item => (
-						<Single key = {item._id} seed={item._source}>Seed</Single>
-						))
-					:<p>No results</p>
-                }
+                <InfiniteScroll
+                    pageStart={0}
+                    hasMore={true || false}
+                    loader={<div className="loader" key={0}>Loading ...</div>}>
+
+                    {this.state.response.length ? 
+                        this.state.response.map(item => (
+                            <Single key = {item._id} seed={item._source}>Seed</Single>
+                            ))
+                        :<p>No results</p>
+                    }
+                </InfiniteScroll>
             </div>
         );
     }

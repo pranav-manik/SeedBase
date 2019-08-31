@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 //grabs search
 router.get('/search', function(req,res,next) {
 	var search = req.query.search;
-	var result_size = 200;
+	var result_size = 10;
 	var query = {
         "dis_max" : {
             "queries" : [

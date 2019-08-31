@@ -12,7 +12,8 @@ class Search extends Component{
 		super(props);
 
 		this.state = {
-			search: ""
+			search: "",
+			sort: 0
 		};
 
 		this.resultElement = React.createRef();
@@ -26,6 +27,11 @@ class Search extends Component{
 	
 	componentWillUnmount() {
 		mql.removeListener(this.mediaQueryChanged);
+	}
+
+	handleSort(sortNum){
+		this.setState({sort: sortNum});
+		this.resultElement.current.dataBySort(sortNum);
 	}
 
 	handleChange(event){

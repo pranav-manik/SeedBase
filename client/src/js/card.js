@@ -30,7 +30,7 @@ class Single extends Component{
 		      <Card onClick={this.toggleExpand}>
 		        <Row>
 				<Col sm="2" className = "centered">
-					<i className="fas fa-carrot fa-2x"></i>
+					<img className = "cardimg" src = {seed.img_url}></img>
 				</Col>
 
 				<Col sm="7">

@@ -30,3 +30,8 @@
 .centered{
     margin: auto;
 }
+
+.cardimg{
+    height: 150px;
+    width: 150px;
+}

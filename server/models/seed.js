@@ -17,6 +17,7 @@ var SeedSchema = new Schema({
 	prices : Object,
 	organic : Boolean,
 	url : String,
+	img_url: String, 
 	timestamp : Date
 });
 
