@@ -13,7 +13,7 @@ class Result extends Component{
             firstRequest: false
         };
 
-
+        this.dataBySort = this.dataBySort.bind(this);
         this.compareString = this.compareString.bind(this);
         
         console.log(this.props.search);
@@ -47,34 +47,56 @@ class Result extends Component{
 					break;
 				// alphebetize
 				case 1:
-					this.setState({response: this.state.response.sort(function (a, b){
-                        return this.compareString(a.variety, b.variety, "ASC");
+					this.setState({response: this.state.response.sort(function (a, b) {
+                          
+                          if (a._source.variety < b._source.variety) {
+                                  return -1;
+                          }
+                          else if (a._source.variety < b._source.variety) {
+                                  return 1;
+                          }
+                          else return 0;
+
+
+                        // return this.compareString(a, b, "ASC");
                     })});
 					// console.log("Outputting resulets after alphabetization:" + this.state.response);
 					break;
 				// low to high pricing
-				// case 2:
-				// 	results = results.sort( (a,b) => {
-				// 	    if (a.prices.price_1) {
-				// 	        var temp_a = (a.prices.price_1.replace("$", "").split('/')[0]);
-				// 	    }
-				// 	    if (b.prices.price_1) {
-				// 	        var temp_b = (b.prices.price_1.replace("$", "").split('/')[0]);
-				// 	    }
-				// 	    return parseFloat(temp_a) - parseFloat(temp_b);
-				// 	});
+				case 2:
+					this.setState({response: this.state.response.sort( (a, b) => {
+                        // console.log(a._source.prices.price_1)
+                        try{
+    					    if (a._source.prices.price_1 != undefined) {
+    					        var temp_a = (a._source.prices.price_1.replace("$", "").split('/')[0]);
+    					    }
+    					    if (b._source.prices.price_1 != undefined) {
+    					        var temp_b = (b._source.prices.price_1.replace("$", "").split('/')[0]);
+    					    }
+    					    return parseFloat(temp_a) - parseFloat(temp_b);
+                        }
+                        catch(err){
+                            return 0
+                        }
+					})});
 				// // high to low pricing
-				// case 3:
-				// 	results = results.sort( (a,b) => {
-				// 	    if (a.prices.price_1) {
-				// 	        var temp_a = (a.prices.price_1.replace("$", "").split('/')[0]);
-				// 	    }
-				// 	    if (b.prices.price_1) {
-				// 	        var temp_b = (b.prices.price_1.replace("$", "").split('/')[0]);
-				// 	    }
-				// 	    return parseFloat(temp_b) - parseFloat(temp_a);
-				// 	});
-				// 	break;
+				case 3:
+					this.setState({response: this.state.response.sort( (a, b) => {
+                        // console.log(a._source.prices.price_1)
+                        try{
+                            if (a._source.prices.price_1 != undefined) {
+                                var temp_a = (a._source.prices.price_1.replace("$", "").split('/')[0]);
+                            }
+                            if (b._source.prices.price_1 != undefined) {
+                                var temp_b = (b._source.prices.price_1.replace("$", "").split('/')[0]);
+                            }
+                            return parseFloat(temp_b) - parseFloat(temp_a);
+                        }
+                        catch(err){
+                            return 0
+                        }
+                    })});
+					break;
 				default:
 					break;
         }
@@ -100,9 +122,11 @@ class Result extends Component{
     // }
 
     compareString(a, b, order){
+        console.log('in compare string')
         a = a.toLowerCase();
         b = b.toLowerCase();
-
+        // console.log(a);
+        // console.log(b);
         if (a == undefined){
             return -1;
         }

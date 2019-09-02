@@ -51,33 +51,32 @@ export default class Sidenav extends Component{
 
 			<Sidebar
 				sidebar={
-				
-				<div className = "sidebar">
-					<p>Welcome to Seedbase</p> 
+					<div className = "sidebar">
+						<p>Welcome to Seedbase</p> 
 
-					<Button color="success">Login</Button>
+						<Button color="success">Login</Button>
 
-					<hr></hr>
+						<hr></hr>
 
-					<p>Location</p>
-					<Button color = "link">Set</Button>
+						<p>Location</p>
+						<Button color = "link">Set</Button>
 
-					<hr></hr>
+						<hr></hr>
 
-					<Dropdown className="filter-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
-						<DropdownToggle caret>
-						Sort
-						</DropdownToggle>
-						<DropdownMenu>
-						<DropdownItem header>Sort by</DropdownItem>
-						<DropdownItem onClick={() => this.searchElement.current.handleSort(0)}>Default</DropdownItem>
-						<DropdownItem onClick={() => this.searchElement.current.handleSort(1)}>Alphabetize</DropdownItem>
-						<DropdownItem onClick={() => this.searchElement.current.handleSort(2)}>Low to High Price</DropdownItem>
-						<DropdownItem onClick={() => this.searchElement.current.handleSort(3)}>High to Low Price</DropdownItem>
-						<DropdownItem onClick={() => this.searchElement.current.handleSort(4)}>Popularity</DropdownItem>
-						</DropdownMenu>
-					</Dropdown>
-				</div>
+						<Dropdown className="filter-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+							<DropdownToggle caret>
+							Sort
+							</DropdownToggle>
+							<DropdownMenu>
+							<DropdownItem header>Sort by</DropdownItem>
+							<DropdownItem onClick={() => this.searchElement.current.handleSort(0)}>Default</DropdownItem>
+							<DropdownItem onClick={() => this.searchElement.current.handleSort(1)}>Alphabetize</DropdownItem>
+							<DropdownItem onClick={() => this.searchElement.current.handleSort(2)}>Low to High Price</DropdownItem>
+							<DropdownItem onClick={() => this.searchElement.current.handleSort(3)}>High to Low Price</DropdownItem>
+							<DropdownItem onClick={() => this.searchElement.current.handleSort(4)}>Popularity</DropdownItem>
+							</DropdownMenu>
+						</Dropdown>
+					</div>
 				}
 				open={this.state.sidebarOpen}
 				docked={this.state.sidebarDocked}
