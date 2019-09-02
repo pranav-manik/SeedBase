@@ -65,32 +65,31 @@ class Result extends Component{
 				// low to high pricing
 				case 2:
 					this.setState({response: this.state.response.sort( (a, b) => {
-                        // console.log(a._source.prices.price_1)
-                        try{
-    					    if (a._source.prices.price_1 != undefined) {
-    					        var temp_a = (a._source.prices.price_1.replace("$", "").split('/')[0]);
+    					    if (a._source.min_price == null && b._source.min_price != null) {
+    					        return 1
     					    }
-    					    if (b._source.prices.price_1 != undefined) {
-    					        var temp_b = (b._source.prices.price_1.replace("$", "").split('/')[0]);
+    					    else if (b._source.min_price == null && a._source.min_price != null) {
+    					        return -1
     					    }
-    					    return parseFloat(temp_a) - parseFloat(temp_b);
-                        }
-                        catch(err){
-                            return 0
-                        }
+                            else if (a._source.min_price == null && b._source.min_price == null) {
+                                return 1
+                            }
+    					    return a._source.min_price - b._source.min_price;
 					})});
-				// // high to low pricing
+				// high to low pricing
 				case 3:
 					this.setState({response: this.state.response.sort( (a, b) => {
-                        // console.log(a._source.prices.price_1)
                         try{
-                            if (a._source.prices.price_1 != undefined) {
-                                var temp_a = (a._source.prices.price_1.replace("$", "").split('/')[0]);
+                            if (a._source.min_price == null && b._source.min_price != null) {
+                                return 1
                             }
-                            if (b._source.prices.price_1 != undefined) {
-                                var temp_b = (b._source.prices.price_1.replace("$", "").split('/')[0]);
+                            else if (b._source.min_price == null && a._source.min_price != null) {
+                                return -1
                             }
-                            return parseFloat(temp_b) - parseFloat(temp_a);
+                            else if (a._source.min_price == null && b._source.min_price == null) {
+                                return 0
+                            }
+                            return b._source.min_price - a._source.min_price;
                         }
                         catch(err){
                             return 0
