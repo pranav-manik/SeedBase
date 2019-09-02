@@ -15,6 +15,8 @@ var SeedSchema = new Schema({
 	life_cycle : String,
 	hybrid_status : String,
 	prices : Object,
+	min_price: Number,
+	max_price: Number,
 	organic : Boolean,
 	url : String,
 	img_url : String,
