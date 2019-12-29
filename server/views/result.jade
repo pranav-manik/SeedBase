@@ -17,10 +17,10 @@ block content
     tbody
       each seed in results
         tr
-          //td #{seed.id}
-          td #{seed.variety}
-          td #{seed.name}
-          td #{seed.category}
+          //td #{seed._id}
+          td #{seed._source.variety}
+          td #{seed._source.name}
+          td #{seed._source.category}
           td
-            a(href="#{seed.url}" target="_blank") #{seed.manufacturer}
+            a(href="#{seed._source.url}" target="_blank") #{seed._source.manufacturer}
           //td=JSON.stringify(seed.prices)

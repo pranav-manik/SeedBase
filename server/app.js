@@ -7,18 +7,28 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
-const lunr = require('lunr');
+// const mongoosastic = require('mongoosastic')
+const elasticsearch = require('elasticsearch');
 
+
+//Mongoose
 mongoose.connect('mongodb+srv://pmanik:M0nG0d@seeds-jwby6.mongodb.net/seedbase?retryWrites=true&w=majority', {useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('MongoDB connected');
+  console.log('MongoDB connected via Mongoose');
 });
 var Seed = require('./models/seed');
 
 
-
+//elasticsearch
+// const elastiClient = new elasticsearch({ node: 'http://localhost:9200' });
+const esClient = new elasticsearch.Client({
+  node: 'http://localhost:9200',
+  maxRetries: 5,
+  requestTimeout: 60000,
+  sniffOnStart: true
+});
 
 const index = require('./routes/index');
 const users = require('./routes/users');

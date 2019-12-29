@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Seed = require('../models/seed');
-var lunr = require('lunr');
+var Queries = require('../helpers/query');
+var client = require('../connection');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,21 +13,34 @@ router.get('/', function(req, res, next) {
 //grabs search
 router.get('/search', function(req,res,next) {
 	var search = req.query.search;
-	const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-	Seed.find({ name : regex}, (err, docs) => {
-		if (err) return res.send("error");
-		else if (docs == null) return "No search found";
-		console.log(docs.length);
-		console.log(docs);
-		return docs;
-	}).exec( (err, result) => {
-		if (err) return res.send("error");
-		else if (result.length == 0) res.send('No results found');
-		res.render('result', {result: result, search: search});
+	var search_array = search.split(" ");
+	var result_size = 200;
+
+	var query = Queries.generateQuery(search);
+
+	// Elastic Search
+	Seed.esSearch({
+		from: 0,
+		size: result_size,
+		query: query
+	}, function (err, seedss) {
+	    if (err) {
+	        //Handle error
+	    }
+
+		try{
+			var results = seedss.hits.hits;
+		} catch(error){
+			console.log(error);
+		}
+
+	    //work with your hits
+	    console.log(results);
+	    res.json(results);
 	});
-	// await result;
-	// console.log("result - " + result);
-	// res.render('result', {result: result});
+
+
+
 
 });
 
