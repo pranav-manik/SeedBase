@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Input, Button, FormGroup, Label, Form , Row, Col, Navbar} from 'reactstrap';
+import {
+	Navbar,
+	NavbarGroup,
+	InputGroup
+} from "@blueprintjs/core";
+
+
 import Result from './result.js';
 import '../css/search.css';
 
@@ -35,6 +40,7 @@ class Search extends Component{
 	}
 
 	handleChange(event){
+		console.log(event);
 		this.setState({value: event.target.search});
 		console.log(this.state.search);
 	}
@@ -53,23 +59,17 @@ class Search extends Component{
 	render(){
 		return(
 			<div>
+
 			<Navbar>
-				<Row>
-					<Col sm="6" className="centered">
-						<Form onSubmit={this.handleSubmit}>
-							 <FormGroup>
-						        <Input
-						          type="search"
-						          name="search"
-						          id="search"
-						          placeholder="Search"
-								  className = "searchbar"
-						    	 />
-								<Button type="submit" color="link"> <i class="fas fa-search"></i> </Button>
-					        </FormGroup>
-				        </Form>
-					</Col>
-				</Row>
+				<NavbarGroup>
+					<InputGroup
+						placeholder='Search seeds'
+						leftIcon='search'
+						round='true'
+						onChange={this.handleSubmit}
+						id="search"
+					/>
+				</NavbarGroup>
 			</Navbar>
 
 			<Result ref={this.resultElement}/>
