@@ -149,18 +149,13 @@ class Result extends Component{
     render(){
         return(
             <div className = "result">
-                <InfiniteScroll
-                    pageStart={0}
-                    hasMore={true || false}
-                    loader={<div className="loader" key={0}>Loading ...</div>}>
 
                     {this.state.response.length ? 
                         this.state.response.map(item => (
                             <Single key = {item._id} seed={item._source}>Seed</Single>
                             ))
-                        :<p>No results</p>
+                        : ""
                     }
-                </InfiniteScroll>
             </div>
         );
     }

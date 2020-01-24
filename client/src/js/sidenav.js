@@ -5,7 +5,6 @@ import Sidebar from 'react-sidebar';
 import Search from './search.js';
 import Result from './result.js';
 import '../css/sidebar.css';
-import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle} from 'reactstrap';
 
 import{Button, Divider, Menu, MenuItem, MenuDivider} from "@blueprintjs/core";
 
