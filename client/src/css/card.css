@@ -1,14 +1,3 @@
-.card{
-	background-color: white;
-	padding: 20px;
-    margin: 0 20px 20px 20px;
-    cursor:pointer;
-}
-
-.card:hover{
-    background-color: #ededed;
-}
-
 .carddetails{
 	margin-top: -20px;
 }
@@ -31,7 +20,60 @@
     margin: auto;
 }
 
+
+
+/*Cards*/
+.item{
+    margin: 20px;
+    padding:0;
+    border-radius: 10px;
+    display: flex;
+    cursor:pointer;
+    height: 200px;
+}
+
+.item span{
+    color: #797979;
+}
+
+.item:hover{
+    background-color: #ededed;
+}
+  
+.imgbox{
+    width: 200px;
+    height: 200px;
+}
+
 .cardimg{
-    height: 150px;
-    width: 150px;
+    object-fit: cover;
+    width: 200px;
+    height: 100%;
+    margin:0;
+    border-radius: 10px 0 0 10px;
+}
+
+.contentbox{
+    padding:20px;
+    width: 85%
+}
+
+.pricebox{
+    padding: 40px;
+    background-color: #a1da60;
+    border-radius: 0 10px 10px 0;
+    text-align: center;
+    color: white;
+    width: 200px;
+    float:right;
+}
+
+
+.prices > li{
+    display:inline-block;
+    margin-right: 10px;
+}
+
+.link{
+    color:white;
 }

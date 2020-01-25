@@ -1,16 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Montserrat', sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/*Colors*/
+
+.blue{
+	background-color:#1F4B99;
+	color:white;
+  }
+  
+  .teal{
+	background-color: #6CACB9;
+	color:white;
+  }
+  
+  .white{
+	background-color: #FFFFFF;
+	color:black;
+  }
+  
+  .orange{
+	background-color: #DF9563;
+  }
+  
+  .red{
+	background-color: #9E2B0E;
+  }
+  
+  /*Margins*/
+  
+  .top-10{
+	margin-top: 10px;
+  }
+  
+  .top-20{
+	margin-top: 20px;
+  }
+  
+  .top-30{
+	margin-top: 30px;
+  }
+  
+  .bottom-10{
+	margin-bottom: 10px;
+  }
+  
+  .bottom-20{
+	margin-bottom: 20px;
+  }
+  
+  .bottom-30{
+	margin-bottom: 30px;
+  }
 
 /*Navbar*/
 
@@ -45,37 +96,11 @@ nav {
 	width:100%;
 }
 
-#search{
-	width: 50%;
-	margin:10px;
-	margin-top: 15px;
-	display: inline;
-}
 
 /*Result*/
 
 .result{
-	float: right;
-	width: 90%;
-	height: 100vh;
-	background-color: #bababa;
+	background-color: #e0e0e0;
+  padding-top: 20px;
 }
 
-.card{
-	background-color: white;
-	padding: 20px;
-	margin: 20px;
-}
-
-.carddetails{
-	margin-top: -20px;
-}
-
-.link{
-	margin-top: 30px;
-	display: block;
-}
-
-.collapse.show{
-	margin-bottom: 20px;
-}

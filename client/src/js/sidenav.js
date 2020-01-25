@@ -1,9 +1,13 @@
+
+
 import React, { Component } from 'react';
 import Sidebar from 'react-sidebar';
 import Search from './search.js';
 import Result from './result.js';
 import '../css/sidebar.css';
-import {Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Button} from 'reactstrap';
+
+import{Button, Divider, Menu, MenuItem, MenuDivider} from "@blueprintjs/core";
+
 const mql = window.matchMedia(`(min-width: 800px)`);
 
 export default class Sidenav extends Component{
@@ -52,30 +56,29 @@ export default class Sidenav extends Component{
 			<Sidebar
 				sidebar={
 					<div className = "sidebar">
-						<p>Welcome to Seedbase</p> 
+						<h2 class="bp3-heading">Seedbase</h2>
 
-						<Button color="success">Login</Button>
+						<Button icon="log-in" text="Login"/>
 
-						<hr></hr>
+						<Divider vertical={true} className="top-20 bottom-20"/>
 
-						<p>Location</p>
-						<Button color = "link">Set</Button>
+						<h4 class="bp3-heading">Location</h4>
+						<Button icon="geosearch" text="Set"/>
 
-						<hr></hr>
+						<Divider vertical={true} className="top-20 bottom-20"/>
 
-						<Dropdown className="filter-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
-							<DropdownToggle caret>
-							Sort
-							</DropdownToggle>
-							<DropdownMenu>
-							<DropdownItem header>Sort by</DropdownItem>
-							<DropdownItem onClick={() => this.searchElement.current.handleSort(0)}>Default</DropdownItem>
-							<DropdownItem onClick={() => this.searchElement.current.handleSort(1)}>Alphabetize</DropdownItem>
-							<DropdownItem onClick={() => this.searchElement.current.handleSort(2)}>Low to High Price</DropdownItem>
-							<DropdownItem onClick={() => this.searchElement.current.handleSort(3)}>High to Low Price</DropdownItem>
-							<DropdownItem onClick={() => this.searchElement.current.handleSort(4)}>Popularity</DropdownItem>
-							</DropdownMenu>
-						</Dropdown>
+						<h4 class="bp3-heading">Filters</h4>
+
+						<Menu>
+							<MenuDivider title="Sort"/>
+							<MenuItem text="Default" onClick={() => this.searchElement.current.handleSort(0)}/>
+							<MenuItem text="Alphabetize" onClick={() => this.searchElement.current.handleSort(1)}/>
+							<MenuDivider title="Price"/>
+							<MenuItem text="Low to High" onClick={() => this.searchElement.current.handleSort(2)}/>
+							<MenuItem text="High to Low" onClick={() => this.searchElement.current.handleSort(3)}/>
+							<MenuDivider/>
+							<MenuItem text="Popularity" onClick={() => this.searchElement.current.handleSort(4)}/>
+						</Menu>
 					</div>
 				}
 				open={this.state.sidebarOpen}

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Collapse, Col, Row } from 'reactstrap';
-
+import { Card, Elevation, Button, Collapse } from "@blueprintjs/core";
 import '../css/card.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 
@@ -13,8 +11,6 @@ class Single extends Component{
 		this.state = {
 			isExpanded: false
 		};
-
-		this.toggleExpand = this.toggleExpand.bind(this);
 	}
 
 	toggleExpand = () => {
@@ -27,22 +23,26 @@ class Single extends Component{
 		return(
 
 			<div>
-		      <Card onClick={this.toggleExpand}>
-		        <Row>
-				<Col sm="2" className = "centered">
-					<img className = "cardimg" src = {seed.img_url}></img>
-				</Col>
+		      <Card onClick={this.toggleExpand} elevation={Elevation.TWO} className="item">
 
-				<Col sm="7">
-					<CardTitle>{seed.variety} {seed.name}</CardTitle>
-					<CardSubtitle><b>Disributor:</b> {seed.manufacturer}</CardSubtitle>
-					<CardSubtitle><b>Maturity:</b> {seed.mat_min == seed.mat_max ? (seed.maturity): seed.mat_min.toString() + "-" + seed.mat_max.toString()} Days | <b>Life Cycle:</b> {seed.life_cycle}</CardSubtitle>
-					<CardSubtitle><b>Hybrid Status:</b> {seed.hybrid_status}</CardSubtitle>
-					<CardSubtitle><b>Organic:</b> {seed.organic ? ("Yes"): "No"}</CardSubtitle>
+				<div className = "imgbox">
+					<img className = "cardimg" src = {seed.img_url}></img>
+				</div>
+				
+				<div className="contentbox">
+
+					<h4 className="bp3-heading"><span>{seed.manufacturer}</span> • {seed.variety} {seed.name}</h4>
+
+					<ul>
+						<li><b>Maturity:</b> {seed.mat_min == seed.mat_max ? (seed.maturity): seed.mat_min.toString() + "-" + seed.mat_max.toString()} Days | <b>Life Cycle:</b> {seed.life_cycle ? "" : "Unavailable"}</li>
+						<li><b>Hybrid Status:</b> {seed.hybrid_status}</li>
+						<li><b>Organic:</b> {seed.organic ? ("Yes"): "No"}</li>
+					</ul>
 					
+					<span>{!this.state.isExpanded ? "Click to expand prices" : ""}</span>
 					<Collapse isOpen={this.state.isExpanded}>
-						<CardSubtitle><b>Prices:</b></CardSubtitle>
-						<ul>						
+						<b>Prices:</b>
+						<ul className="prices">						
 							{prices ?  
 								Object.keys(prices).map((key, index) => (
 									<li key={index}>{prices[key]}</li>
@@ -51,13 +51,12 @@ class Single extends Component{
 
 					</Collapse>
 					
-				</Col>
+				</div>
 
-				<Col sm="3" className = "centered">
-						<CardSubtitle><b>{prices ? prices.price_1 : "N/A"}</b></CardSubtitle>
-						<a target="_blank" className = "link" href = {seed.url}><i className="fas fa-shopping-basket fa-2x"></i></a>		
-				</Col>
-				</Row>
+				<div className="pricebox">
+					<h2>{prices ? prices.price_1 : "N/A"}</h2>
+					<a target="_blank" className = "link" href = {seed.url}><i className="fas fa-shopping-basket fa-2x"></i></a>		
+				</div>
 		        
 		      </Card>
 
