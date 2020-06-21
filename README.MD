@@ -14,7 +14,7 @@
 
 [v 0.1 Demo](https://seedbase-e7ee6.firebaseapp.com)
 
-verison 1.0 changes enabled us to 
+verison 1.0 changes enabled us to <br/>
     - real time/fuzzy searching <br/>
     - style changes <br/>
     - Elasticsearch/kibana integration <br/>
