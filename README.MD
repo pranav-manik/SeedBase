@@ -15,10 +15,10 @@
 [v 0.1 Demo](https://seedbase-e7ee6.firebaseapp.com)
 
 verison 1.0 changes enabled us to 
-    - real time/fuzzy searching
-    - style changes
-    - Elasticsearch/kibana integration
-    - cloud DB integration (MongoDB Atlas)
+    - real time/fuzzy searching <br/>
+    - style changes <br/>
+    - Elasticsearch/kibana integration <br/>
+    - cloud DB integration (MongoDB Atlas) <br/>
     
 
 created by Pranav Maniktala & Aldi Maraya
