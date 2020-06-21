@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Single from './card.js';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroller';
+import Pagination from './pagination.js'
 
 class Result extends Component{
 
@@ -45,7 +46,7 @@ class Result extends Component{
 				case 0:
 					console.log(sort_by);
 					break;
-				// alphebetize
+				// alphabetize
 				case 1:
 					this.setState({response: this.state.response.sort(function (a, b) {
                           
@@ -156,6 +157,12 @@ class Result extends Component{
                             ))
                         : ""
                     }
+
+                    {this.state.response.length ? 
+                        <Pagination items={this.state.response}/>
+                        : <Pagination size={0} total={0} />
+                    }
+                    
             </div>
         );
     }

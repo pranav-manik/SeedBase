@@ -9,10 +9,11 @@ const fileUpload = require('express-fileupload');
 const mongoose = require('mongoose');
 // const mongoosastic = require('mongoosastic')
 const elasticsearch = require('elasticsearch');
+require('dotenv').config();
 
 
 //Mongoose
-mongoose.connect('mongodb+srv://pmanik:M0nG0d@seeds-jwby6.mongodb.net/seedbase?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -24,7 +25,7 @@ var Seed = require('./models/seed');
 //elasticsearch
 // const elastiClient = new elasticsearch({ node: 'http://localhost:9200' });
 const esClient = new elasticsearch.Client({
-  node: 'http://localhost:9200',
+  node: process.env.ELASTICSEARCH_URI,
   maxRetries: 5,
   requestTimeout: 60000,
   sniffOnStart: true
